@@ -47,7 +47,7 @@ export default function Product( { product } : ProductProps){
 
       setIsCreatingCheckoutSession(false)
 
-      alert('falha aoi redirecitonar ao checkout!')
+      alert('falha ao redirecitonar ao checkout!')
     }
   }
 
