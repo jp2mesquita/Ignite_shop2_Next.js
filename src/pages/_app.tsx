@@ -4,34 +4,68 @@ import { globalStyles } from "../styles/global"
 import logoImg from '../assets/logo.svg'
 import Image from 'next/future/image'
 
-import { CartButton, Container, Header } from "../styles/pages/app";
-import { Handbag } from "phosphor-react";
+import { CartButton, CartUnitsAmount, CloseCartButton, Container, Header } from "../styles/pages/app";
+import { Handbag, X } from "phosphor-react";
+
+
+import AppWrapper  from './cartContext'
 import { useState } from "react";
+import { CartButtonContainer } from "../components/CartButtonContainer";
+import { ShopModal } from "../components/ShopModal";
+import Link from "next/link";
+
 
 globalStyles();
 
 
 export default function App({ Component, pageProps }: AppProps) {
 
-  let isSaleCompleted = true
+  
+
   const customer = pageProps.customerName
 
-  if(customer){
-    isSaleCompleted = false
+  
+  let isSaleCompleted = (customer != null)
+  
+
+  console.log(isSaleCompleted)
+
+  const [showCartModal, setShowCartModal] = useState<boolean>(false)
+
+ 
+  function handleOpenCart(){
+    setShowCartModal(true)
+  }
+
+  function handleCloseCart(){
+    setShowCartModal(false)
   }
 
   return (
-    <Container>
-      <Header success={isSaleCompleted}>
-        <Image src={logoImg} alt="" />
+    <AppWrapper>
+      { showCartModal && <ShopModal closeCart={handleCloseCart}/>} 
+      { showCartModal && 
+        <CloseCartButton onClick={ () => handleCloseCart()}>
+          <X size={24} weight={'bold'} color={'#fff'}/>
+        </CloseCartButton>
+   
+      }
 
-        <CartButton showCart={isSaleCompleted}>
-          <Handbag size={24} weight='bold'/>  
-        </CartButton>
-      </Header>
+      <Container>
+        <Header success={isSaleCompleted}>
+          <Link href={'/'}>
+            <Image src={logoImg} alt="" />
+          </Link>
+          <CartButton success={isSaleCompleted}
+            onClick={() => handleOpenCart()}
+          >
+            <CartButtonContainer />
+          </CartButton>
+        </Header>
 
-      <Component {...pageProps} />
+        <Component {...pageProps}/>
 
-    </Container>
+      </Container>
+    </AppWrapper>
   )
 }

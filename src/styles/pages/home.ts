@@ -7,6 +7,7 @@ export  const HomeContainer = styled('main', {
   maxWidth: 'calc(100vw - ((100vw - 1180px)/2))',
   marginLeft: 'auto',
   minHeight: 656,
+
 })
 
 export const Product = styled('div', {
@@ -60,15 +61,20 @@ export const Product = styled('div', {
         color: '$green300',
       },
 
+      // position: 'relative',
+
       button:{
+        // position: "absolute",
+        // right: -10,
+        // top: -25,
         backgroundColor: '$green500',
         color: '$gray100',
         border: 'none',
         borderRadius: 8,
         padding: '.75rem',
-
+    
         transition: 'all 0.2s',
-
+    
         '&:hover':{
           backgroundColor: '$green300',
         },

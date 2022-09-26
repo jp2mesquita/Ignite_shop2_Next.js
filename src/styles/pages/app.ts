@@ -1,3 +1,4 @@
+
 import { styled } from "..";
 
 export const Container = styled('div',  {
@@ -19,20 +20,15 @@ export const Header = styled('header', {
 
   variants:{
     success:{
-      false:{
+      true:{
         justifyContent: 'center',
       },
-      true:{
+      false:{
         justifyContent: 'space-between',
       }
 
     },
-    
-
   }
-  
-
-  
 })
 
 export const CartButton = styled('button', {
@@ -42,16 +38,68 @@ export const CartButton = styled('button', {
   borderRadius: 8,
   padding: '.75rem',
   color: '$gray300',
-  
+  position: 'relative',
+
   variants:{
-    showCart:{
+    success:{
       true:{
-        display: 'block',
-      },
-      false:{
         display: 'none',
       },
+      false:{
+        display: 'block',
+      },
     },
+    // svg:{
+    //   isEmpty:{
+        
+    //   }
+    // }
   },
+})
+
+export const CloseCartButton = styled('button',{
+  background: '$gray800',
+  width: '1.5rem',
+  height: '1.5rem',
+  position: "absolute",
+  border: 'none',
+
+  top: 40,
+  right: 40,
+  zIndex: 999,
+})
+
+export const CartUnitsAmount = styled('div',{
+  position: "absolute",
+  zIndex: 3,
+  right: 0,
+  top: 0,
+  transform: "translateY(-50%) translatex(50%)",
+  width: '1.5rem',
+  height: '1.5rem',
+  backgroundColor: '$green500',
+  color: '$white',
+  border: "3px solid $gray900",
+  borderRadius: '50%',
+
+  variants:{
+    isEmpty:{
+      true: {
+        display: 'none',
+      },
+      false:{
+        display: "flex"
+      }
+    }
+  },
+
+  alignItems: "center",
+  justifyContent: "center",
+
+  padding: 14,
+
+  fontSize: '.875rem',
+  fontFamily: 'Roboto',
+  fontWeight: 'bold',
 
 })
